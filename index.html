@@ -5,22 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MOUNTAIN AI — Colossus North</title>
 
-  <meta name="description" content="Mountain AI — Colossus North: a 1 GW off-grid supercluster in northern Alberta. Stranded flares + geothermal, 120,000 GPUs, 100% heat export, First Nations equity from day zero.">
+  <meta name="description" content="Mountain AI — Colossus North: a 1 GW off-grid supercluster in northern Alberta, using stranded flare gas, geothermal and full heat reuse.">
   <meta name="theme-color" content="#020617">
 
   <style>
     :root {
       --bg: #020617;
-      --bg-elevated: #020617;
-      --card: #020617;
-      --card-border: rgba(148,163,184,0.35);
-      --accent: #22c55e;
-      --accent-soft: rgba(34,197,94,0.12);
-      --accent-alt: #22d3ee;
-      --text-main: #e5e7eb;
+      --text-main: #f9fafb;
       --text-muted: #9ca3af;
-      --heading: #f9fafb;
-      --danger: #f97316;
     }
 
     * {
@@ -31,18 +23,10 @@
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
         "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #0b1120 0, #020617 48%, #000 100%);
+      background: radial-gradient(circle at top, #0b1120 0, #020617 40%, #000 100%);
       color: var(--text-main);
-      line-height: 1.7;
+      line-height: 1.75;
       text-align: left;
-    }
-
-    a {
-      color: var(--accent-alt);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
     }
 
     .page {
@@ -51,663 +35,330 @@
       flex-direction: column;
     }
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      backdrop-filter: blur(14px);
-      background: linear-gradient(
-        to bottom,
-        rgba(15,23,42,0.92),
-        rgba(15,23,42,0.7),
-        transparent
-      );
-      border-bottom: 1px solid rgba(51,65,85,0.6);
-    }
-
-    .nav {
-      max-width: 1024px;
-      margin: 0 auto;
-      padding: 0.9rem 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .logo-mark {
-      width: 32px;
-      height: 32px;
-      border-radius: 9px;
-      border: 1px solid rgba(148,163,184,0.7);
-      background-image: url("mountainAIlogo.jpg");
-      background-size: cover;
-      background-position: center;
-      box-shadow:
-        0 0 18px rgba(34,197,94,0.35),
-        0 0 44px rgba(8,47,73,0.9);
-      flex-shrink: 0;
-    }
-
-    .wordmark {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-    }
-
-    .wordmark span:first-child {
-      font-size: 0.82rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-
-    .wordmark span:last-child {
-      font-size: 0.88rem;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.24em;
-    }
-
-    .nav-pill {
-      font-size: 0.78rem;
-      padding: 0.35rem 0.8rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.65);
-      color: var(--text-muted);
-      background: radial-gradient(circle at 0 0, rgba(56,189,248,0.28), transparent 55%);
-      white-space: nowrap;
-    }
-
     main {
       flex: 1;
     }
 
-    .hero {
-      padding: 4.5rem 1.5rem 3.5rem;
-      background:
-        linear-gradient(to bottom, rgba(2,6,23,0.4), rgba(2,6,23,0.96)),
-        url("mountainAI1.jpg") center/cover no-repeat fixed;
-      color: var(--text-main);
+    .section {
+      padding-inline: 1.5rem;
     }
 
-    .hero-inner {
-      max-width: 1024px;
+    .stream {
+      max-width: 780px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.8fr);
-      gap: 2.5rem;
-      align-items: center;
+      padding-block: 4.5rem;
     }
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      padding: 0.28rem 0.72rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.8);
-      background: rgba(15,23,42,0.9);
-      color: var(--text-muted);
-      font-size: 0.78rem;
-      letter-spacing: 0.16em;
+    .sky {
+      background: linear-gradient(to bottom, #020617 0%, #020617 70%, rgba(2,6,23,0.98) 100%);
+    }
+
+    .mountain {
+      position: relative;
+      color: var(--text-main);
+      overflow: hidden;
+    }
+
+    .mountain::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom,
+          rgba(2,6,23,0.0) 0%,
+          rgba(2,6,23,0.45) 35%,
+          rgba(2,6,23,0.85) 80%,
+          rgba(0,0,0,1) 100%
+        ),
+        url("mountainAI1.jpg") center/cover no-repeat fixed;
+      z-index: -1;
+      transform: translate3d(0,0,0);
+    }
+
+    .underground {
+      background:
+        radial-gradient(circle at top, rgba(15,23,42,0.9) 0, #020617 28%, #000 100%);
+      border-top: 1px solid rgba(31,41,55,0.9);
+      box-shadow: 0 -40px 120px rgba(0,0,0,0.9);
+    }
+
+    h1, h2 {
+      margin: 0;
+      font-weight: 600;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-    }
-
-    .eyebrow-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 14px rgba(34,197,94,0.9);
     }
 
     h1 {
-      font-size: clamp(2.9rem, 4vw, 3.6rem);
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      margin: 1.4rem 0 0.6rem;
-      color: var(--heading);
+      font-size: clamp(2.6rem, 4vw, 3.4rem);
     }
 
-    .hero-subtitle {
-      font-size: 1.05rem;
-      color: var(--accent);
+    h2 {
+      font-size: 0.95rem;
+      margin-bottom: 1.2rem;
+      color: var(--text-muted);
+    }
+
+    .eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
       margin-bottom: 1.3rem;
     }
 
-    .hero-body {
-      font-size: 0.98rem;
-      color: var(--text-muted);
-      max-width: 34rem;
+    .hero-title-block {
+      margin-bottom: 2.4rem;
     }
 
-    .hero-body strong {
+    .hero-subtitle {
+      margin-top: 1.1rem;
+      font-size: 1.05rem;
+    }
+
+    .hero-subtitle span {
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    p {
+      margin: 0 0 1.25rem;
+      font-size: 0.98rem;
       color: var(--text-main);
+    }
+
+    p.muted {
+      color: var(--text-muted);
+    }
+
+    strong {
       font-weight: 600;
     }
 
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.75rem;
-      margin-top: 2rem;
-      max-width: 32rem;
+    .spacer {
+      height: 2.5rem;
     }
 
-    .stat-pill {
-      padding: 0.75rem 0.95rem;
-      border-radius: 0.9rem;
-      background: rgba(15,23,42,0.92);
-      border: 1px solid rgba(55,65,81,0.9);
-      display: flex;
-      flex-direction: column;
-      gap: 0.12rem;
-    }
-
-    .stat-label {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-muted);
-    }
-
-    .stat-value {
-      font-size: 0.96rem;
-      color: var(--heading);
-    }
-
-    .hero-right {
+    .underground-grid {
       position: relative;
-      isolation: isolate;
+      padding-top: 2rem;
+      margin-top: 1.5rem;
     }
 
-    .hero-card {
-      border-radius: 1.4rem;
-      padding: 1.4rem 1.4rem 1.25rem;
-      background:
-        radial-gradient(circle at 0 0, rgba(34,197,94,0.24), transparent 55%),
-        rgba(2,6,23,0.96);
-      border: 1px solid rgba(148,163,184,0.7);
-      box-shadow:
-        0 24px 80px rgba(15,23,42,0.95),
-        0 0 0 1px rgba(15,23,42,0.7);
-    }
-
-    .hero-card-title {
-      font-size: 0.9rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 0.8rem;
-    }
-
-    .hero-card-main {
-      font-size: 1.05rem;
-      color: var(--heading);
-      margin-bottom: 0.6rem;
-    }
-
-    .hero-card-main span {
-      color: var(--accent);
-    }
-
-    .hero-card-note {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .hero-tagline {
-      margin-top: 0.9rem;
-      font-size: 0.76rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-muted);
-    }
-
-    .hero-tagline span {
-      color: var(--accent-alt);
-    }
-
-    .hero-orbit {
-      position: absolute;
-      inset: -20%;
-      pointer-events: none;
-      opacity: 0.7;
-    }
-
-    .hero-orbit::before,
-    .hero-orbit::after {
+    .underground-grid::before {
       content: "";
       position: absolute;
-      inset: 18%;
-      border-radius: 999px;
-      border: 1px dashed rgba(148,163,184,0.24);
+      inset: 0;
+      opacity: 0.22;
+      background-image:
+        linear-gradient(to right, rgba(148,163,184,0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(148,163,184,0.18) 1px, transparent 1px);
+      background-size: 38px 38px;
+      mask-image: radial-gradient(circle at top, rgba(0,0,0,0.8) 0, rgba(0,0,0,1) 55%);
+      pointer-events: none;
     }
 
-    .hero-orbit::after {
-      inset: 32%;
-      border-style: solid;
-      border-color: rgba(34,197,94,0.32);
-    }
-
-    .sections {
-      max-width: 1024px;
-      margin: 0 auto;
-      padding: 1.5rem 1.5rem 3.5rem;
-      display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(0, 2fr);
-      gap: 2.5rem;
-      align-items: flex-start;
-    }
-
-    section {
-      border-radius: 1.3rem;
-      background: radial-gradient(circle at 0 0, rgba(15,23,42,0.9), #020617);
-      border: 1px solid var(--card-border);
-      padding: 1.6rem 1.7rem 1.5rem;
-    }
-
-    section h2 {
-      margin-top: 0;
-      margin-bottom: 0.75rem;
-      font-size: 1rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--heading);
-    }
-
-    section p {
-      margin: 0.1rem 0 0.6rem;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0.6rem 0 0;
-    }
-
-    li {
-      font-size: 0.92rem;
-      margin: 0.3rem 0;
-      color: var(--text-main);
-      display: flex;
-      gap: 0.45rem;
-      align-items: flex-start;
-    }
-
-    .bullet {
-      margin-top: 0.45rem;
-      width: 4px;
-      height: 4px;
-      border-radius: 999px;
-      background: rgba(148,163,184,0.8);
-      flex-shrink: 0;
-    }
-
-    .status-note {
-      font-size: 0.9rem;
-      margin-top: 0.3rem;
-    }
-
-    .status-chip-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.8rem;
-    }
-
-    .status-chip {
-      font-size: 0.78rem;
-      padding: 0.25rem 0.65rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.7);
-      color: var(--text-muted);
-      background: rgba(15,23,42,0.98);
-    }
-
-    .status-chip.danger {
-      border-color: rgba(248,113,113,0.9);
-      color: #fed7aa;
-      background: rgba(127,29,29,0.6);
-    }
-
-    .contact-card {
-      margin-top: 1rem;
-      padding-top: 0.95rem;
-      border-top: 1px dashed rgba(51,65,85,0.9);
-      font-size: 0.9rem;
-    }
-
-    .contact-label {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--text-muted);
-      margin-bottom: 0.35rem;
-    }
-
-    .contact-links {
+    .bottom-row {
       display: flex;
       flex-direction: column;
-      gap: 0.2rem;
+      align-items: center;
+      text-align: center;
+      margin-top: 3.2rem;
+      gap: 1.4rem;
     }
 
-    .hashtag {
-      margin-top: 0.35rem;
-      font-size: 0.86rem;
-      color: var(--accent-alt);
-    }
-
-    .banner {
-      max-width: 1024px;
-      margin: 0 auto;
-      padding: 0 1.5rem 3rem;
-    }
-
-    .banner-inner {
-      border-radius: 1.4rem;
+    .logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
       overflow: hidden;
-      border: 1px solid rgba(30,64,175,0.9);
-      background: #020617;
+      border: 1px solid rgba(148,163,184,0.7);
+      box-shadow:
+        0 0 24px rgba(15,23,42,0.9),
+        0 0 60px rgba(15,23,42,1);
     }
 
-    .banner-inner img {
+    .logo img {
       display: block;
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-name {
+      font-size: 0.95rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .contact-line {
+      font-size: 0.95rem;
+      margin-top: 0.2rem;
+    }
+
+    .contact-line a {
+      color: var(--text-main);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(249,250,251,0.45);
+      padding-bottom: 2px;
+    }
+
+    .contact-line a:hover {
+      border-bottom-color: rgba(249,250,251,0.9);
     }
 
     footer {
-      border-top: 1px solid rgba(30,64,175,0.7);
-      background: radial-gradient(circle at 50% -40%, rgba(30,64,175,0.9), #020617);
-      padding: 1.2rem 1.5rem 1.6rem;
-      margin-top: 0.5rem;
-    }
-
-    .footer-inner {
-      max-width: 1024px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 0.9rem;
-      align-items: center;
+      padding: 1.1rem 1.5rem 1.6rem;
       font-size: 0.78rem;
-      color: rgba(191,219,254,0.85);
-    }
-
-    .footer-inner span {
-      opacity: 0.9;
-    }
-
-    .footer-inner strong {
-      color: #e0f2fe;
-    }
-
-    @media (max-width: 900px) {
-      .hero-inner {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .hero-right {
-        order: -1;
-      }
-      .hero {
-        padding-top: 4rem;
-      }
-      .sections {
-        grid-template-columns: minmax(0,1fr);
-      }
+      color: var(--text-muted);
+      text-align: center;
+      border-top: 1px solid rgba(31,41,55,0.9);
+      background: #000;
     }
 
     @media (max-width: 640px) {
-      .nav {
-        padding-inline: 1.1rem;
+      .stream {
+        padding-block: 3.5rem;
       }
       h1 {
-        letter-spacing: 0.22em;
-      }
-      .hero-stats {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      section {
-        padding-inline: 1.25rem;
+        letter-spacing: 0.18em;
       }
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <header>
-      <div class="nav">
-        <div class="nav-left">
-          <div class="logo-mark" aria-hidden="true"></div>
-          <div class="wordmark">
-            <span>Colossus North</span>
-            <span>MOUNTAIN AI</span>
-          </div>
-        </div>
-        <div class="nav-pill">
-          Northern Alberta · Off-grid AI supercluster
-        </div>
-      </div>
-    </header>
-
     <main>
-      <section class="hero">
-        <div class="hero-inner">
-          <div>
-            <div class="eyebrow">
-              <span class="eyebrow-dot"></span>
-              <span>Concept note · Early stage</span>
-            </div>
+      <!-- Sky / Hero -->
+      <section class="section sky">
+        <div class="stream">
+          <div class="eyebrow">Concept note · Northern Alberta</div>
 
+          <div class="hero-title-block">
             <h1>MOUNTAIN AI</h1>
-
-            <div class="hero-subtitle">
-              1&nbsp;GW off-grid supercluster · Northern Alberta
-            </div>
-
-            <div class="hero-body">
-              <p>
-                <strong>Natgas + geothermal</strong> · 120&nbsp;000 GPUs ·
-                <strong>100&nbsp;% heat export</strong><br>
-                First Nations equity from day zero · <strong>Steel 2026</strong>
-              </p>
-            </div>
-
-            <div class="hero-stats">
-              <div class="stat-pill">
-                <div class="stat-label">Power &amp; cooling</div>
-                <div class="stat-value">
-                  PUE target&nbsp;1.04 · −40&nbsp;°C free air + full heat recovery
-                </div>
-              </div>
-              <div class="stat-pill">
-                <div class="stat-label">Energy loop</div>
-                <div class="stat-value">
-                  All waste heat piped into district heating for nearby communities
-                </div>
-              </div>
-              <div class="stat-pill">
-                <div class="stat-label">Ownership</div>
-                <div class="stat-value">
-                  First Nations carried interest + revenue share from day one
-                </div>
-              </div>
-              <div class="stat-pill">
-                <div class="stat-label">Grid stance</div>
-                <div class="stat-value">
-                  Zero grid dependency · flare-adjacent siting
-                </div>
-              </div>
-            </div>
+            <p class="hero-subtitle">
+              <span>1&nbsp;GW off-grid supercluster</span> ·
+              <span>Colossus North</span>
+            </p>
           </div>
 
-          <div class="hero-right">
-            <div class="hero-orbit" aria-hidden="true"></div>
-            <div class="hero-card">
-              <div class="hero-card-title">North-built infrastructure</div>
-              <div class="hero-card-main">
-                1&nbsp;GW of <span>HPC + AI</span> compute anchored in
-                northern Alberta, powered by stranded flare gas and
-                geothermal co-production, with every watt of waste heat
-                spoken for before the concrete is poured.
-              </div>
-              <div class="hero-card-note">
-                This page is not a securities offering. It’s a public stake in
-                the ground to find the people who can actually make
-                <strong>steel by 2026</strong>.
-              </div>
-              <div class="hero-tagline">
-                # <span>ColossusNorth</span> · built in the cold for a hot compute age
-              </div>
+          <p>
+            At the top of the sky you see stars. Drop a little lower and you see
+            a cold northern valley. Somewhere in that valley, a field of light:
+            racks of GPUs running flat-out while the air sits at forty below.
+          </p>
+          <p>
+            <strong>Mountain AI</strong> is the idea of turning that valley into
+            a 1&nbsp;gigawatt off-grid compute cluster in northern Alberta:
+            stranded flare gas and geothermal co-production feeding high-density
+            HPC and AI, with every watt of waste heat spoken for before the
+            concrete is poured.
+          </p>
+          <p class="muted">
+            This page is a single continuous surface. Scroll down: from sky, to
+            mountains, to the buried pipes and manifolds underneath.
+          </p>
+        </div>
+      </section>
+
+      <!-- Mountain band with background image -->
+      <section class="section mountain">
+        <div class="stream">
+          <h2>Mountain band · where the machines live</h2>
+
+          <p>
+            Halfway down the scroll you meet the ridge line. Dark silhouettes,
+            cold air, and a lit pad of hardware sitting where snow should be.
+            Here the project takes its actual shape:
+          </p>
+
+          <p>
+            A cluster designed for roughly <strong>120&nbsp;000 GPUs</strong>,
+            built as a series of tightly coupled “heat blocks”. Each block is a
+            piece of the thermal puzzle: power in from flare-derived gas and
+            geothermal, compute in the middle, hot water and glycol out to
+            nearby towns and industrial users.
+          </p>
+
+          <p>
+            The target is <strong>PUE 1.04</strong> using the cold itself as an
+            asset: −40&nbsp;°C free air, carefully ducted, backed by immersion
+            and liquid loops wherever the density demands it. Energy that would
+            have gone to the sky leaves instead as district heat, greenhouse
+            heat, drying kilns, and process heat.
+          </p>
+
+          <p>
+            Ownership is designed from day one to include
+            <strong>First Nations carried interest and revenue share</strong>,
+            not as a late-stage ESG patch but as one of the core foundation
+            stones. The land, the title path, and the long-term benefit have to
+            make sense locally before any steel goes in.
+          </p>
+
+          <div class="spacer"></div>
+
+          <p>
+            Scroll a little further and imagine the concrete, the anchor bolts,
+            the cable trays. Imagine the sound damped, the light controlled, the
+            waste heat mapped over an entire winter’s worth of human comfort.
+            That’s the design brief.
+          </p>
+        </div>
+      </section>
+
+      <!-- Underground / infrastructure + contact -->
+      <section class="section underground">
+        <div class="stream">
+          <h2>Underground · the buried part of the idea</h2>
+
+          <div class="underground-grid">
+            <p>
+              Underneath the pad is where the idea really lives: in pipe runs,
+              manifolds, conduit, and data paths. Hot water leaving the racks
+              and traveling out along insulated mains. Return lines bringing
+              cooled water back. Cables tying edge buildings, substations,
+              turbines, and control rooms into a single nervous system.
+            </p>
+
+            <p>
+              The intent is simple to describe and hard to execute: treat
+              high-density compute as a controllable heat source, schedule jobs
+              and cooling as one problem, and spin up or down sections of the
+              cluster to match heat demand without starving training runs.
+            </p>
+
+            <p>
+              On paper it is a 1&nbsp;GW off-grid supercluster. In practice it
+              is a bet that a cold region with under-used energy resources can
+              host some of the cleanest, most efficient AI compute on earth,
+              while literally heating homes.
+            </p>
+
+            <p class="muted">
+              Status: solo founder, pre-permit, pre-capital. Early stage,
+              building the engineering story in public and looking for the
+              people who know how to move pipe, steel, turbines, and governance
+              in cold places.
+            </p>
+          </div>
+
+          <div class="bottom-row">
+            <div class="logo">
+              <img src="mountainAIlogo.jpg" alt="Mountain AI logo">
+            </div>
+            <div class="brand-name">Mountain AI · Colossus North</div>
+            <div class="contact-line">
+              Contact: <a href="mailto:james@mountainai.ca">james@mountainai.ca</a>
             </div>
           </div>
         </div>
       </section>
-
-      <!-- Mid-page banner using circuit-mountain artwork -->
-      <div class="banner">
-        <div class="banner-inner">
-          <img src="mountainAIbanner.jpg" alt="Mountain AI digital corridor artwork">
-        </div>
-      </div>
-
-      <div class="sections">
-        <section aria-labelledby="plan-heading">
-          <h2 id="plan-heading">The Plan</h2>
-          <p>
-            Turn a flare-wasted, under-used energy basin into a negative-carbon
-            AI and HPC engine that heats real homes and communities.
-          </p>
-          <ul>
-            <li>
-              <span class="bullet"></span>
-              <span>100&nbsp;% off-grid power (stranded flares + geothermal co-production).</span>
-            </li>
-            <li>
-              <span class="bullet"></span>
-              <span>PUE target&nbsp;1.04 using −40&nbsp;°C free air plus full heat recovery.</span>
-            </li>
-            <li>
-              <span class="bullet"></span>
-              <span>All waste heat contracted into district heating loops for nearby communities.</span>
-            </li>
-            <li>
-              <span class="bullet"></span>
-              <span>First Nations carried interest and revenue share written in from day zero.</span>
-            </li>
-            <li>
-              <span class="bullet"></span>
-              <span>Zero grid dependency by design; local resilience first.</span>
-            </li>
-          </ul>
-        </section>
-
-        <section aria-labelledby="status-heading">
-          <h2 id="status-heading">Current Status</h2>
-          <p class="status-note">
-            Early sketch. No legalese. Just a founder, a region, and a very
-            large spreadsheet.
-          </p>
-          <ul>
-            <li>
-              <span class="bullet"></span>
-              <span>Solo founder · No investors · No formal deck yet.</span>
-            </li>
-            <li>
-              <span class="bullet"></span>
-              <span>First version shipped at 5&nbsp;a.m. on pizza and coffee.</span>
-            </li>
-            <li>
-              <span class="bullet"></span>
-              <span>Building in public · details evolve as real partners show up.</span>
-            </li>
-          </ul>
-
-          <div class="status-chip-row">
-            <div class="status-chip danger">Pre-permit · Pre-capital</div>
-            <div class="status-chip">Site search in progress</div>
-            <div class="status-chip">Concept engineering ongoing</div>
-          </div>
-        </section>
-      </div>
-
-      <div class="sections">
-        <section aria-labelledby="looking-heading">
-          <h2 id="looking-heading">Looking For</h2>
-          <p>
-            People and orgs who know how to get heavy things permitted,
-            financed, and into the ground in cold places.
-          </p>
-          <ul>
-            <li>
-              <span class="bullet"></span>
-              <span>
-                Land (500–2000&nbsp;acres, flare-adjacent, northern Alberta) with a clear path
-                on title and Indigenous rights.
-              </span>
-            </li>
-            <li>
-              <span class="bullet"></span>
-              <span>Turbine / PPA partners comfortable with off-grid generation stacks.</span>
-            </li>
-            <li>
-              <span class="bullet"></span>
-              <span>First Nations development corps &amp; chiefs willing to truly co-found.</span>
-            </li>
-            <li>
-              <span class="bullet"></span>
-              <span>GPU overflow / immersion-cooling partners who like −40&nbsp;°C ambients.</span>
-            </li>
-            <li>
-              <span class="bullet"></span>
-              <span>Builders who can move steel, pipe, and cable before year-end&nbsp;2026.</span>
-            </li>
-          </ul>
-        </section>
-
-        <section aria-labelledby="contact-heading">
-          <h2 id="contact-heading">Contact</h2>
-          <p>
-            If this sounds like your kind of ridiculous, get in touch directly.
-            No forms. No funnels.
-          </p>
-
-          <div class="contact-card">
-            <div class="contact-label">Signal path</div>
-            <div class="contact-links">
-              <a href="https://x.com/mountainAI_AB" target="_blank" rel="noopener">
-                @mountainAI_AB on X (DMs open)
-              </a>
-              <a href="mailto:james@mountainai.ca">
-                james@mountainai.ca
-              </a>
-            </div>
-            <div class="hashtag">#ColossusNorth</div>
-          </div>
-        </section>
-      </div>
     </main>
 
     <footer>
-      <div class="footer-inner">
-        <span>
-          Draft vision for a northern, off-grid AI corridor. Content is aspirational and subject to change.
-        </span>
-        <span>
-          Built in Alberta · <strong>MOUNTAIN AI</strong>
-        </span>
-      </div>
+      Draft vision for a northern, off-grid AI corridor. Aspirational, evolving, not a securities offering.
     </footer>
   </div>
 </body>
