@@ -41,6 +41,9 @@
 
     .section {
       padding-inline: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
     }
 
     .stream {
@@ -225,6 +228,57 @@
         letter-spacing: 0.18em;
       }
     }
+
+    /* Aurora layers */
+    .section::after {
+      content: "";
+      position: absolute;
+      inset: -8%;
+      background:
+        radial-gradient(280px at var(--ax, 50%) var(--ay, 50%),
+          rgba(var(--aurora-a, 62, 233, 255), 0.2) 0%,
+          rgba(var(--aurora-b, 120, 84, 255), 0.18) 16%,
+          rgba(var(--aurora-c, 0, 0, 0), 0.0) 48%),
+        radial-gradient(380px at calc(var(--ax, 50%) + 6%) calc(var(--ay, 50%) + 8%),
+          rgba(var(--aurora-b, 120, 84, 255), 0.28) 0%,
+          rgba(var(--aurora-d, 25, 255, 182), 0.24) 22%,
+          rgba(var(--aurora-e, 0, 0, 0), 0.0) 52%);
+      mix-blend-mode: screen;
+      opacity: var(--a-opacity, 0);
+      filter: saturate(1.28) blur(28px);
+      transition: opacity 220ms ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .section.sky {
+      --aurora-a: 96, 223, 255;
+      --aurora-b: 80, 148, 255;
+      --aurora-c: 0, 18, 70;
+      --aurora-d: 52, 255, 217;
+      --aurora-e: 11, 15, 60;
+    }
+
+    .section.mountain {
+      --aurora-a: 255, 147, 109;
+      --aurora-b: 255, 90, 154;
+      --aurora-c: 80, 14, 80;
+      --aurora-d: 255, 210, 115;
+      --aurora-e: 45, 5, 40;
+    }
+
+    .section.underground {
+      --aurora-a: 142, 255, 161;
+      --aurora-b: 79, 214, 255;
+      --aurora-c: 5, 30, 25;
+      --aurora-d: 255, 255, 140;
+      --aurora-e: 0, 8, 24;
+    }
+
+    .section > * {
+      position: relative;
+      z-index: 1;
+    }
   </style>
 </head>
 <body>
@@ -244,7 +298,7 @@
           </div>
 
           <p>
-            Cold Alberta Rush - Last Best West call for Engineers 
+            Alberta Cold Rush - Last Best West call for Engineers 
           </p>
           <p>
             <strong>Mountain AI</strong> is the idea of turning old mine and oil infra into
@@ -338,9 +392,9 @@
             <div class="logo">
               <img src="mountainAIlogo.jpg" alt="Mountain AI logo">
             </div>
-            <div class="brand-name">Mountain AI · Colossus North</div>
+            <div class="brand-name">Mountain AI · Colossus North </div>
             <div class="contact-line">
-              Contact: <a href="mailto:james@mountainai.ca">james@mountainai.ca</a>
+              Contact: <a href="https://x.com/mountainAI_AB">@mountainAI_AB  <a href="mailto:engineering@mountainai.ca">engineering@mountainai.ca</a>
             </div>
           </div>
         </div>
@@ -351,5 +405,38 @@
       Draft vision for a northern, off-grid AI corridor. Aspirational, evolving, not a securities offering.
     </footer>
   </div>
+
+  <script>
+    // Mouse-driven aurora sweeps per section
+    const sections = document.querySelectorAll('.section');
+
+    sections.forEach((section) => {
+      let raf;
+
+      const activate = () => {
+        section.style.setProperty('--a-opacity', '1');
+      };
+
+      const deactivate = () => {
+        section.style.setProperty('--a-opacity', '0');
+      };
+
+      const move = (e) => {
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          const rect = section.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          section.style.setProperty('--ax', `${x}%`);
+          section.style.setProperty('--ay', `${y}%`);
+          activate();
+        });
+      };
+
+      section.addEventListener('mousemove', move, { passive: true });
+      section.addEventListener('mouseenter', activate, { passive: true });
+      section.addEventListener('mouseleave', deactivate, { passive: true });
+    });
+  </script>
 </body>
 </html>
