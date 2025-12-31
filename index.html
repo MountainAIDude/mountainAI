@@ -7,12 +7,18 @@
 
   <meta name="description" content="Mountain AI">
   <meta name="theme-color" content="#020617">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --bg: #020617;
       --text-main: #f9fafb;
       --text-muted: #9ca3af;
+      --ink: #e2e8f0;
+      --accent: #38bdf8;
+      --accent-strong: #f59e0b;
     }
 
     * {
@@ -21,8 +27,7 @@
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
+      font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
       background: radial-gradient(circle at top, #0b1120 0, #020617 40%, #000 100%);
       color: var(--text-main);
       line-height: 1.75;
@@ -47,7 +52,7 @@
     }
 
     .stream {
-      max-width: 780px;
+      max-width: 860px;
       margin: 0 auto;
       padding-block: 4.5rem;
     }
@@ -88,6 +93,7 @@
     h1, h2 {
       margin: 0;
       font-weight: 600;
+      font-family: "Space Grotesk", "Manrope", sans-serif;
       letter-spacing: 0.24em;
       text-transform: uppercase;
     }
@@ -140,6 +146,45 @@
 
     .spacer {
       height: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.4rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+    }
+
+    .btn.primary {
+      background: linear-gradient(120deg, rgba(56,189,248,0.25), rgba(245,158,11,0.25));
+      border-color: rgba(148,163,184,0.7);
+      color: var(--text-main);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+    }
+
+    .btn.secondary {
+      border-color: rgba(148,163,184,0.5);
+      color: var(--text-main);
+      background: rgba(15,23,42,0.45);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.45);
     }
 
     .underground-grid {
@@ -211,6 +256,44 @@
       border-bottom-color: rgba(249,250,251,0.9);
     }
 
+    .feature-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      margin-top: 1.6rem;
+    }
+
+    .feature-card {
+      padding: 1.2rem 1.3rem;
+      border-radius: 16px;
+      background: rgba(15,23,42,0.55);
+      border: 1px solid rgba(148,163,184,0.25);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+    }
+
+    .feature-title {
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+      font-family: "Space Grotesk", "Manrope", sans-serif;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(16,185,129,0.1);
+      border: 1px solid rgba(16,185,129,0.35);
+      color: #a7f3d0;
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
     footer {
       padding: 1.1rem 1.5rem 1.6rem;
       font-size: 0.78rem;
@@ -220,12 +303,21 @@
       background: #000;
     }
 
+    @media (max-width: 900px) {
+      .mountain::before {
+        background-attachment: scroll;
+      }
+    }
+
     @media (max-width: 640px) {
       .stream {
         padding-block: 3.5rem;
       }
       h1 {
         letter-spacing: 0.18em;
+      }
+      .hero-subtitle span {
+        white-space: normal;
       }
     }
 
@@ -287,78 +379,82 @@
       <!-- Sky / Hero -->
       <section class="section sky">
         <div class="stream">
-          <div class="eyebrow">Concept note · Northern Alberta</div>
+          <div class="eyebrow">Concept note / Northern Alberta</div>
 
           <div class="hero-title-block">
             <h1>MOUNTAIN AI</h1>
             <p class="hero-subtitle">
-              <span>1&nbsp;GW off-grid supercluster</span> ·
-              <span>Cold compute pitch</span>
+              <span>1&nbsp;GW off-grid compute campus</span> /
+              <span>cold-climate performance & heat reuse</span>
             </p>
           </div>
 
           <p>
-            Alberta cold rush and the last best west compute development frontier.  
+            Mountain AI is building a cold-climate AI compute campus in Northern Alberta,
+            pairing reliable off-grid power with industrial heat reuse for year-round efficiency.
           </p>
           <p>
-            <strong>Engineers, coders, and senders wanted. </strong>
+            <strong>We are engineering a durable, modular buildout that scales from pilot to campus.</strong>
           </p>
-          <p class="muted">
-            
-          </p>
+          <p class="muted">Seeking energy partners, infrastructure collaborators, and early compute tenants.</p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="mailto:engineering@mountainai.ca">Start a conversation</a>
+            <a class="btn secondary" href="https://x.com/mountainAI_AB">Follow updates</a>
+          </div>
         </div>
       </section>
 
       <!-- Mountain band with background image -->
       <section class="section mountain">
         <div class="stream">
-          <h2>Mountain AI compute heat</h2>
+          <h2>What we are building</h2>
 
           <p>
-           Send it:
+            A new class of compute campus that treats power, cooling, and community as one integrated system.
           </p>
 
-          <p>
-            Power. Supercomputes. Engineer resorts. Robots.  
-          </p>
-
-          <p>
-            Mountain Electric Rail System. Robot Hospital. Absolute madlad vibes, wild startup energy. 
-          </p>
-
-          <p>
-           Mountain frontier compute project. Get into it.
-          </p>
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="feature-title">Energy + Power</div>
+              <p class="muted">Off-grid generation with long-term supply agreements, optimized for cold-climate reliability and low-cost power.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-title">Compute Campus</div>
+              <p class="muted">Modular data halls and networking built for high-density AI workloads, phased from pilot to full scale.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-title">Heat Reuse</div>
+              <p class="muted">Waste heat captured for adjacent industrial, commercial, and hospitality uses to maximize total efficiency.</p>
+            </div>
+          </div>
 
           <div class="spacer"></div>
 
-          <p>
-           
-          </p>
+          <div class="status-pill">Status: early stage / site diligence underway</div>
         </div>
       </section>
 
       <!-- Underground / infrastructure + contact -->
       <section class="section underground">
         <div class="stream">
-          <h2>Underground Infra</h2>
+          <h2>Infrastructure & location</h2>
 
           <div class="underground-grid">
             <p>
-             Old mines. Ghost towns. Industrial ruins. Robot workforce development. 
+              Access to underutilized industrial land, workforce capacity, and existing corridors to support heavy buildout.
             </p>
 
             <p>
-              New co-existance of human, machine, and mountain. 
+              Cold ambient temperatures reduce cooling load while enabling stable year-round operations.
             </p>
 
             <p>
-              Off-grid supercluster. Cold region with under-used energy resources. In line to
-              host some of the cleanest, most efficient AI compute on earth while offering heated output to nearby world-class resort and castle. 
+              Positioned to deliver some of the most efficient AI compute in North America while creating local energy reuse opportunities.
             </p>
 
             <p class="muted">
-              Status: real AF. Early stage. Greenlit.
+              We are assembling the initial partner group and opening conversations on power, land, and infrastructure.
             </p>
           </div>
 
@@ -366,9 +462,10 @@
             <div class="logo">
               <img src="mountainAIlogo.jpg" alt="Mountain AI logo">
             </div>
-            <div class="brand-name">Mountain AI · Canada </div>
+            <div class="brand-name">Mountain AI / Canada</div>
             <div class="contact-line">
-              Contact: <a href="https://x.com/mountainAI_AB">@mountainAI_AB  <a href="mailto:engineering@mountainai.ca">engineering@mountainai.ca</a>
+              Contact: <a href="https://x.com/mountainAI_AB">@mountainAI_AB</a> ·
+              <a href="mailto:engineering@mountainai.ca">engineering@mountainai.ca</a>
             </div>
           </div>
         </div>
