@@ -7,6 +7,7 @@
 
   <meta name="description" content="Mountain AI">
   <meta name="theme-color" content="#020617">
+  <link rel="icon" href="mountainfavicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
@@ -57,8 +58,19 @@
       padding-block: 4.5rem;
     }
 
+    .summit {
+      position: relative;
+      background:
+        linear-gradient(to bottom,
+          rgba(2,6,23,0.1) 0%,
+          rgba(2,6,23,0.4) 55%,
+          rgba(0,0,0,0.75) 100%
+        ),
+        url("mountainAIsky1.jpg") center/cover no-repeat fixed;
+    }
+
     .sky {
-      background: linear-gradient(to bottom, #020617 0%, #020617 70%, rgba(2,6,23,0.98) 100%);
+      color: var(--text-main);
     }
 
     .mountain {
@@ -67,25 +79,48 @@
       overflow: hidden;
     }
 
-    .mountain::before {
+    .sky::before,
+    .mountain::before,
+    .underground::before {
       content: "";
       position: absolute;
       inset: 0;
-      background:
-        linear-gradient(to bottom,
-          rgba(2,6,23,0.0) 0%,
-          rgba(2,6,23,0.45) 35%,
-          rgba(2,6,23,0.85) 80%,
-          rgba(0,0,0,1) 100%
-        ),
-        url("mountainAI1.jpg") center/cover no-repeat fixed;
       z-index: -1;
       transform: translate3d(0,0,0);
     }
 
+    .sky::before {
+      background:
+        linear-gradient(to bottom,
+          rgba(2,6,23,0.0) 0%,
+          rgba(2,6,23,0.2) 45%,
+          rgba(2,6,23,0.55) 100%
+        );
+    }
+
+    .mountain::before {
+      background:
+        linear-gradient(to bottom,
+          rgba(2,6,23,0.0) 0%,
+          rgba(2,6,23,0.35) 45%,
+          rgba(2,6,23,0.7) 85%,
+          rgba(0,0,0,0.92) 100%
+        );
+    }
+
+    .underground::before {
+      background:
+        linear-gradient(to bottom,
+          rgba(2,6,23,0.5) 0%,
+          rgba(2,6,23,0.85) 45%,
+          rgba(0,0,0,0.98) 100%
+        ),
+        url("mountainAIunderground1.jpg") center/cover no-repeat fixed;
+    }
+
     .underground {
       background:
-        radial-gradient(circle at top, rgba(15,23,42,0.9) 0, #020617 28%, #000 100%);
+        radial-gradient(circle at top, rgba(15,23,42,0.6) 0, rgba(2,6,23,0.9) 28%, rgba(0,0,0,0.98) 100%);
       border-top: 1px solid rgba(31,41,55,0.9);
       box-shadow: 0 -40px 120px rgba(0,0,0,0.9);
     }
@@ -304,7 +339,14 @@
     }
 
     @media (max-width: 900px) {
+      .summit {
+        background-attachment: scroll;
+      }
+      .sky::before,
       .mountain::before {
+        background-attachment: scroll;
+      }
+      .underground::before {
         background-attachment: scroll;
       }
     }
@@ -376,64 +418,66 @@
 <body>
   <div class="page">
     <main>
-      <!-- Sky / Hero -->
-      <section class="section sky">
-        <div class="stream">
-          <div class="eyebrow">Concept note / Northern Alberta</div>
+      <div class="summit">
+        <!-- Sky / Hero -->
+        <section class="section sky">
+          <div class="stream">
+            <div class="eyebrow">Concept note / Northern Alberta</div>
 
-          <div class="hero-title-block">
-            <h1>MOUNTAIN AI</h1>
-            <p class="hero-subtitle">
-              <span>1&nbsp;GW off-grid compute campus</span> /
-              <span>cold-climate performance & heat reuse</span>
+            <div class="hero-title-block">
+              <h1>MOUNTAIN AI</h1>
+              <p class="hero-subtitle">
+                <span>1&nbsp;GW off-grid compute campus</span> /
+                <span>cold-climate performance & heat reuse</span>
+              </p>
+            </div>
+
+            <p>
+              Mountain AI is building a cold-climate AI compute campus in Northern Alberta,
+              pairing reliable off-grid power with industrial heat reuse for year-round efficiency.
             </p>
-          </div>
+            <p>
+              <strong>We are engineering a durable, modular buildout that scales from pilot to campus.</strong>
+            </p>
+            <p class="muted">Seeking energy partners, infrastructure collaborators, and early compute tenants.</p>
 
-          <p>
-            Mountain AI is building a cold-climate AI compute campus in Northern Alberta,
-            pairing reliable off-grid power with industrial heat reuse for year-round efficiency.
-          </p>
-          <p>
-            <strong>We are engineering a durable, modular buildout that scales from pilot to campus.</strong>
-          </p>
-          <p class="muted">Seeking energy partners, infrastructure collaborators, and early compute tenants.</p>
-
-          <div class="hero-actions">
-            <a class="btn primary" href="mailto:engineering@mountainai.ca">Start a conversation</a>
-            <a class="btn secondary" href="https://x.com/mountainAI_AB">Follow updates</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Mountain band with background image -->
-      <section class="section mountain">
-        <div class="stream">
-          <h2>What we are building</h2>
-
-          <p>
-            A new class of compute campus that treats power, cooling, and community as one integrated system.
-          </p>
-
-          <div class="feature-grid">
-            <div class="feature-card">
-              <div class="feature-title">Energy + Power</div>
-              <p class="muted">Off-grid generation with long-term supply agreements, optimized for cold-climate reliability and low-cost power.</p>
-            </div>
-            <div class="feature-card">
-              <div class="feature-title">Compute Campus</div>
-              <p class="muted">Modular data halls and networking built for high-density AI workloads, phased from pilot to full scale.</p>
-            </div>
-            <div class="feature-card">
-              <div class="feature-title">Heat Reuse</div>
-              <p class="muted">Waste heat captured for adjacent industrial, commercial, and hospitality uses to maximize total efficiency.</p>
+            <div class="hero-actions">
+              <a class="btn primary" href="mailto:engineering@mountainai.ca">Start a conversation</a>
+              <a class="btn secondary" href="https://x.com/mountainAI_AB">Follow updates</a>
             </div>
           </div>
+        </section>
 
-          <div class="spacer"></div>
+        <!-- Mountain band with background image -->
+        <section class="section mountain">
+          <div class="stream">
+            <h2>What we are building</h2>
 
-          <div class="status-pill">Status: early stage / site diligence underway</div>
-        </div>
-      </section>
+            <p>
+              A new class of compute campus that treats power, cooling, and community as one integrated system.
+            </p>
+
+            <div class="feature-grid">
+              <div class="feature-card">
+                <div class="feature-title">Energy + Power</div>
+                <p class="muted">Off-grid generation with long-term supply agreements, optimized for cold-climate reliability and low-cost power.</p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-title">Compute Campus</div>
+                <p class="muted">Modular data halls and networking built for high-density AI workloads, phased from pilot to full scale.</p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-title">Heat Reuse</div>
+                <p class="muted">Waste heat captured for adjacent industrial, commercial, and hospitality uses to maximize total efficiency.</p>
+              </div>
+            </div>
+
+            <div class="spacer"></div>
+
+            <div class="status-pill">Status: early stage / site diligence underway</div>
+          </div>
+        </section>
+      </div>
 
       <!-- Underground / infrastructure + contact -->
       <section class="section underground">
@@ -460,7 +504,7 @@
 
           <div class="bottom-row">
             <div class="logo">
-              <img src="mountainAIlogo.jpg" alt="Mountain AI logo">
+              <img src="mountainfavicon.png" alt="Mountain AI logo">
             </div>
             <div class="brand-name">Mountain AI / Canada</div>
             <div class="contact-line">
